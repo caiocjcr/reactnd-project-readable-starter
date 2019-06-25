@@ -1,4 +1,4 @@
-import { RECEIVE_COMMENTS, VOTE_COMMENT, DELETE_COMMENT, EDIT_COMMENT } from '../actions/comments'
+import { RECEIVE_COMMENTS, VOTE_COMMENT, DELETE_COMMENT, EDIT_COMMENT, ADD_COMMENT } from '../actions/comments'
 import { arrayToObject } from '../utils/helpers'
 
 export default function comments(state = {}, action) {
@@ -29,6 +29,13 @@ export default function comments(state = {}, action) {
                     ...state[action.comment.id],
                     body: action.comment.body,
                     timestamp: action.comment.timestamp
+                }
+            }
+        case ADD_COMMENT :
+            return {
+                ...state,
+                [action.comment.id]: {
+                    ...action.comment
                 }
             }
         default :
